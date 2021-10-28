@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {connect} from 'react-redux';
+import stripe from '@stripe/stripe-react-native';
 
 class Paiement extends PureComponent {
   constructor(props) {
@@ -26,7 +27,7 @@ class Paiement extends PureComponent {
       emailB: false,
       password: null,
       confirmpassword: null,
-      abonnement: null,
+      priceId: null,
       errorPassword: false,
       error: false,
       errorEmail: false,
@@ -44,7 +45,7 @@ class Paiement extends PureComponent {
   componentDidMount = () => {
     this.setState(prevState => ({
       ...this.state,
-      abonnement: this.props.route.params.data,
+      priceId: this.props.route.params.data,
     }));
   };
 
@@ -55,10 +56,12 @@ class Paiement extends PureComponent {
   isValid = form => {
     let valid = true;
     Object.values(form).forEach(val => {
+      console.log(val);
       if (!val) {
         valid = false;
       }
     });
+    console.log(valid);
     return valid;
   };
 
@@ -78,7 +81,9 @@ class Paiement extends PureComponent {
 
     d.password = this.state.password;
 
-    d.abonnement = this.state.abonnement;
+    d.confirmpassword = this.state.confirmpassword;
+
+    d.priceId = this.state.priceId;
 
     if (this.isValid(d)) {
       if (
@@ -86,7 +91,17 @@ class Paiement extends PureComponent {
         this.state.password === this.state.confirmpassword &&
         this.re.test(this.state.email)
       ) {
-        this.props.navigation.navigate('confirmation', {data: d});
+        await axios({
+          url: `${API_URL}/create-customer"`,
+          data: this.state,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then(res =>
+            this.props.navigation.navigate('confirmation', {data: d}),
+          )
+          .catch(err => console.log(err));
       } else {
         this.setState(prevState => ({
           ...this.state,
@@ -100,6 +115,7 @@ class Paiement extends PureComponent {
         }, 9000);
       }
     } else {
+      console.log('hello');
       this.setState(prevState => ({...this.state, errorT: true}));
       setTimeout(() => {
         this.setState(prevState => ({
@@ -111,6 +127,7 @@ class Paiement extends PureComponent {
   };
 
   render() {
+    console.log(this.state.priceId);
     return (
       <KeyboardAvoidingView
         style={{

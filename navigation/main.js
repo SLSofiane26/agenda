@@ -14,7 +14,7 @@ let mainStack = createNativeStackNavigator();
 let main = () => {
   return (
     <mainStack.Navigator
-      initialRouteName="home"
+      initialRouteName="confirmation"
       screenOptions={{
         headerShown: true,
         headerTransparent: true,

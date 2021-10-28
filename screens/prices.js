@@ -17,18 +17,21 @@ let prices = props => {
       title: '1 mois',
       desc: "Profitez de toutes les fonctionnalités de l'application pendant 1 mois.",
       price: '15 € TTC',
+      priceId: 'price_1JpdjBKFhUTtY2eIJ64uBcli',
     },
     {
       id: 2,
       title: 'Abonnement mensuel',
       desc: "En choissisant l'abonnement mensuel, profitez de toutes les fonctionnalités de l'application.",
       price: '10 € TTC / mois',
+      priceId: 'price_1JpdjTKFhUTtY2eIsoR0Bf7W',
     },
     {
       id: 3,
       title: 'Abonnement annuel',
       desc: "En choissisant l'abonnement annuel, profitez de toutes les fonctionnalités de l'application à prix réduit.",
       price: '96 € TTC / an',
+      priceId: 'price_1JpdjlKFhUTtY2eI05ojDCU7',
     },
   ]);
 
@@ -83,7 +86,7 @@ let prices = props => {
         </View>
         <TouchableOpacity
           onPress={() =>
-            props.navigation.navigate('paiement', {data: item.item.title})
+            props.navigation.navigate('paiement', {data: item.item.priceId})
           }
           style={{
             borderColor: 'black',
