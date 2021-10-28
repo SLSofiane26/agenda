@@ -127,34 +127,9 @@ class homePage extends PureComponent {
                 borderWidth: 1,
                 borderColor: 'black',
               }}>
-              <Text
-                style={{
-                  color: 'white',
-                  fontSize: 20,
-                  fontFamily: 'Manrope-Light',
-                  textAlign: 'center',
-                  borderRadius: 25,
-                }}>
-                Évènement ajouté à votre agenda !
-              </Text>
-              <Text
-                style={{
-                  color: 'white',
-                  fontSize: 25,
-                  fontFamily: 'Manrope-Light',
-                  textAlign: 'center',
-                  borderRadius: 25,
-                }}>
-                {this.state.titre}
-              </Text>
-              <Text
-                style={{
-                  color: 'white',
-                  fontSize: 25,
-                  fontFamily: 'Manrope-Light',
-                  textAlign: 'center',
-                  borderRadius: 25,
-                }}>
+              <Text style={style.text}>Évènement ajouté à votre agenda !</Text>
+              <Text style={style.text}>{this.state.titre}</Text>
+              <Text style={style.text}>
                 Date de l'évènement :{' '}
                 {new Date(this.state.dateBis).toLocaleDateString('fr-FR')}
               </Text>
@@ -194,22 +169,7 @@ class homePage extends PureComponent {
           }}
         />
         <TouchableOpacity
-          style={{
-            width: '70%',
-            borderColor: 'black',
-            borderWidth: 1,
-            borderRadius: 20,
-            marginTop: '15%',
-            padding: '5%',
-            display: 'flex',
-            alignContent: 'center',
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: 'rgba(115, 113, 252, 0.9)',
-            shadowColor: 'black',
-            shadowOffset: {width: 2, height: 2},
-            shadowOpacity: 10,
-          }}
+          style={style.button}
           onPress={() => this.props.navigation.navigate('Mon agenda')}>
           <Text
             style={{
@@ -223,18 +183,7 @@ class homePage extends PureComponent {
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={{
-            width: '70%',
-            borderColor: 'black',
-            borderWidth: 1,
-            borderRadius: 20,
-            marginTop: '15%',
-            padding: '5%',
-            backgroundColor: 'rgba(115, 113, 252, 0.9)',
-            shadowColor: 'black',
-            shadowOffset: {width: 2, height: 2},
-            shadowOpacity: 10,
-          }}
+          style={style.button}
           onPress={() =>
             this.props.navigation.navigate('Ajouter un évènement')
           }>
@@ -250,22 +199,7 @@ class homePage extends PureComponent {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate('Profile')}
-          style={{
-            width: '70%',
-            borderColor: 'black',
-            borderWidth: 1,
-            borderRadius: 20,
-            marginTop: '15%',
-            padding: '5%',
-            backgroundColor: 'rgba(115, 113, 252, 0.9)',
-            shadowColor: 'black',
-            shadowOffset: {width: 2, height: 2},
-            shadowOpacity: 10,
-            alignContent: 'center',
-            alignItems: 'center',
-            justifyContent: 'center',
-            display: 'flex',
-          }}>
+          style={style.button}>
           <Text
             style={{
               color: 'white',
@@ -280,6 +214,32 @@ class homePage extends PureComponent {
     );
   }
 }
+
+let style = StyleSheet.create({
+  text: {
+    color: 'white',
+    fontSize: 20,
+    fontFamily: 'Manrope-Light',
+    textAlign: 'center',
+    borderRadius: 25,
+  },
+  button: {
+    width: '70%',
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 20,
+    marginTop: '15%',
+    padding: '5%',
+    display: 'flex',
+    alignContent: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(115, 113, 252, 0.9)',
+    shadowColor: 'black',
+    shadowOffset: {width: 2, height: 2},
+    shadowOpacity: 10,
+  },
+});
 
 let mapStateToProps = state => {
   return {
