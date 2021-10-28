@@ -5,7 +5,6 @@ import {
   TextInput,
   TouchableOpacity,
   Text,
-  KeyboardAvoidingView,
   Animated,
   Image,
   StyleSheet,
@@ -14,7 +13,9 @@ import axios from 'axios';
 import {API_URL} from '@env';
 import {useDispatch} from 'react-redux';
 import * as ACTIONS from '../reducer/actions';
-import Icon from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/Ionicons';
+import Iconb from 'react-native-vector-icons/AntDesign';
+import TouchID from 'react-native-touch-id';
 
 let login = React.memo(function login(props) {
   let dispatch = useDispatch();
@@ -33,6 +34,8 @@ let login = React.memo(function login(props) {
 
   let [error, setError] = useState(false);
 
+  let [biometry, setBiometry] = useState(null);
+
   let [errorIdentification, setErrorIdentification] = useState(false);
 
   let isValid = form => {
@@ -44,6 +47,25 @@ let login = React.memo(function login(props) {
     });
     return valid;
   };
+
+  useEffect(() => {
+    let optionalConfigObject = {
+      unifiedErrors: false, // use unified error messages (default false)
+      passcodeFallback: false, // if true is passed, itwill allow isSupported to return an error if the device is not enrolled in touch id/face id etc. Otherwise, it will just tell you what method is supported, even if the user is not enrolled.  (default false)
+    };
+
+    TouchID.isSupported(optionalConfigObject)
+      .then(biometryType => {
+        if (biometryType === 'FaceID') {
+          setBiometry('face');
+        } else {
+          setBiometry('id');
+        }
+      })
+      .catch(error => {
+        setBiometry('dsds');
+      });
+  }, []);
 
   let re =
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -71,6 +93,14 @@ let login = React.memo(function login(props) {
         setError(false);
       }, 9000);
     }
+  };
+
+  let handleSubmitBis = async () => {
+    await TouchID.authenticate()
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log(err));
   };
 
   return (
@@ -143,7 +173,7 @@ let login = React.memo(function login(props) {
               <TouchableOpacity
                 style={{paddingLeft: '10%'}}
                 onPress={() => setFormBis({...formBis, email: false})}>
-                <Icon name="close" size={20} />
+                <Iconb name="close" size={20} />
               </TouchableOpacity>
             </View>
           ) : (
@@ -214,7 +244,7 @@ let login = React.memo(function login(props) {
           <TouchableOpacity
             onPress={() => setSecret(!secret)}
             style={{top: '1%'}}>
-            <Icon name="eyeo" size={30} color="black" />
+            <Iconb name="eyeo" size={30} color="black" />
           </TouchableOpacity>
         </View>
 
@@ -224,9 +254,11 @@ let login = React.memo(function login(props) {
             padding: 0,
             margin: 0,
             display: 'flex',
-            flexDirection: 'column',
+            flexDirection: 'row',
             alignItems: 'center',
             marginTop: '10%',
+            justifyContent: 'space-around',
+            alignContent: 'center',
           }}>
           <TouchableOpacity
             onPress={() => handleSubmit()}
@@ -253,6 +285,12 @@ let login = React.memo(function login(props) {
               Se connecter
             </Text>
           </TouchableOpacity>
+
+          {biometry && (
+            <TouchableOpacity onPress={() => handleSubmitBis()} style={{}}>
+              <Icon name="finger-print" size={100} />
+            </TouchableOpacity>
+          )}
         </View>
         {error && !re.test(form.email) && (
           <Text
