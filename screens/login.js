@@ -270,30 +270,10 @@ let login = React.memo(function login(props) {
           </Text>
         )}
         {error && !re.test(form.email) && (
-          <Text
-            style={{
-              fontFamily: 'Manrope-Regular',
-              color: '#FF3A20',
-              textAlign: 'center',
-              fontSize: 16,
-              backgroundColor: 'rgba(255,255,255,1)',
-              padding: 6,
-            }}>
-            Tous les champs doivent être remplis.
-          </Text>
+          <Text style={style.error}>Tous les champs doivent être remplis.</Text>
         )}
         {errorIdentification && (
-          <Text
-            style={{
-              fontFamily: 'Manrope-Regular',
-              color: '#FF3A20',
-              textAlign: 'center',
-              backgroundColor: 'rgba(255,255,255,1)',
-              padding: 6,
-              fontSize: 16,
-            }}>
-            Identifiants inconnus
-          </Text>
+          <Text style={style.error}>Identifiants inconnus</Text>
         )}
       </ScrollView>
     </View>
@@ -309,6 +289,14 @@ let style = StyleSheet.create({
         backgroundColor: 'white',
       },
     }),
+  },
+  error: {
+    fontFamily: 'Manrope-Regular',
+    color: '#FF3A20',
+    textAlign: 'center',
+    backgroundColor: 'rgba(255,255,255,1)',
+    padding: 6,
+    fontSize: 16,
   },
 });
 

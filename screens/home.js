@@ -103,7 +103,7 @@ class Home extends PureComponent {
             style={{
               display: 'flex',
               flexDirection: 'row',
-              flexBasis: '80%',
+              flexBasis: '100%',
               alignContent: 'center',
               justifyContent: 'space-evenly',
               alignItems: 'center',
@@ -178,8 +178,8 @@ let style = StyleSheet.create({
     padding: '5%',
     display: 'flex',
     alignContent: 'center',
-    justifyContent: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
     borderColor: 'black',
     borderWidth: 1,
     borderRadius: 10,

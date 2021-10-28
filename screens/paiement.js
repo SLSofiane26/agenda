@@ -9,6 +9,7 @@ import {
   Text,
   TouchableOpacity,
   Image,
+  KeyboardAvoidingView,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {connect} from 'react-redux';
@@ -111,435 +112,421 @@ class Paiement extends PureComponent {
 
   render() {
     return (
-      <ScrollView
-        contentContainerStyle={{
-          justifyContent: 'center',
+      <KeyboardAvoidingView
+        style={{
+          backgroundColor: 'white',
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
           alignContent: 'center',
           alignItems: 'center',
-          display: 'flex',
-          flex: 1,
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          marginTop: '20%',
-          backgroundColor: 'white',
-        }}>
-        <View
-          style={{
-            flexBasis: '80%',
-            padding: 0,
-            margin: 0,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        behavior="height"
+        keyboardVerticalOffset={10}>
+        <ScrollView
+          contentContainerStyle={{
             justifyContent: 'center',
             alignContent: 'center',
-            marginTop: '10%',
-          }}>
-          {this.state.firstName && this.state.firstNameb ? (
-            <View
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignContent: 'center',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '100%',
-              }}>
-              <Text
-                style={{
-                  color: '#7371FC',
-                  fontSize: 30,
-                  fontFamily: 'Manrope-Regular',
-                }}>
-                {this.state.firstName}
-              </Text>
-              <TouchableOpacity
-                style={{paddingLeft: '10%'}}
-                onPress={() =>
-                  this.setState(prevState => ({
-                    ...this.state,
-                    firstNameb: false,
-                  }))
-                }>
-                <Icon name="close" size={20} />
-              </TouchableOpacity>
-            </View>
-          ) : (
-            <TextInput
-              style={style.ipuntBis}
-              autoCapitalize="none"
-              onEndEditing={() =>
-                this.setState(prevState => ({
-                  ...this.state,
-                  firstNameb: true,
-                }))
-              }
-              defaultValue={this.state.firstName}
-              dataDetectorTypes="all"
-              keyboardAppearance="light"
-              textContentType="familyName"
-              autoCompleteType="name"
-              placeholder="Nom"
-              placeholderTextColor="black"
-              onChangeText={val =>
-                this.setState(prevState => ({
-                  ...this.state,
-                  firstName: val,
-                }))
-              }
-            />
-          )}
-        </View>
-        <View
-          style={{
-            flexBasis: '80%',
-            padding: 0,
-            margin: 0,
+            alignItems: 'center',
             display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            marginTop: '10%',
+            flex: 1,
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            marginTop: '20%',
+            backgroundColor: 'white',
           }}>
-          {this.state.lastName && this.state.lastNameb ? (
-            <View
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignContent: 'center',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '100%',
-              }}>
-              <Text
+          <View
+            style={{
+              flexBasis: '80%',
+              padding: 0,
+              margin: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              alignContent: 'center',
+              marginTop: '10%',
+            }}>
+            {this.state.firstName && this.state.firstNameb ? (
+              <View
                 style={{
-                  color: '#7371FC',
-                  fontSize: 30,
-                  fontFamily: 'Manrope-Regular',
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignContent: 'center',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '100%',
                 }}>
-                {this.state.lastName}
-              </Text>
-              <TouchableOpacity
-                style={{paddingLeft: '10%'}}
-                onPress={() =>
+                <Text
+                  style={{
+                    color: '#7371FC',
+                    fontSize: 30,
+                    fontFamily: 'Manrope-Regular',
+                  }}>
+                  {this.state.firstName}
+                </Text>
+                <TouchableOpacity
+                  style={{paddingLeft: '10%'}}
+                  onPress={() =>
+                    this.setState(prevState => ({
+                      ...this.state,
+                      firstNameb: false,
+                    }))
+                  }>
+                  <Icon name="close" size={20} />
+                </TouchableOpacity>
+              </View>
+            ) : (
+              <TextInput
+                style={style.inputBis}
+                autoCapitalize="none"
+                onEndEditing={() =>
                   this.setState(prevState => ({
                     ...this.state,
-                    lastNameb: false,
+                    firstNameb: true,
                   }))
-                }>
-                <Icon name="close" size={20} />
-              </TouchableOpacity>
-            </View>
-          ) : (
+                }
+                defaultValue={this.state.firstName}
+                dataDetectorTypes="all"
+                keyboardAppearance="light"
+                textContentType="familyName"
+                autoCompleteType="name"
+                placeholder="Nom"
+                placeholderTextColor="black"
+                onChangeText={val =>
+                  this.setState(prevState => ({
+                    ...this.state,
+                    firstName: val,
+                  }))
+                }
+              />
+            )}
+          </View>
+          <View
+            style={{
+              flexBasis: '80%',
+              padding: 0,
+              margin: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              marginTop: '10%',
+            }}>
+            {this.state.lastName && this.state.lastNameb ? (
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignContent: 'center',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '100%',
+                }}>
+                <Text
+                  style={{
+                    color: '#7371FC',
+                    fontSize: 30,
+                    fontFamily: 'Manrope-Regular',
+                  }}>
+                  {this.state.lastName}
+                </Text>
+                <TouchableOpacity
+                  style={{paddingLeft: '10%'}}
+                  onPress={() =>
+                    this.setState(prevState => ({
+                      ...this.state,
+                      lastNameb: false,
+                    }))
+                  }>
+                  <Icon name="close" size={20} />
+                </TouchableOpacity>
+              </View>
+            ) : (
+              <TextInput
+                autoCapitalize="none"
+                style={style.inputBis}
+                onEndEditing={() =>
+                  this.setState(prevState => ({
+                    ...this.state,
+                    lastNameb: true,
+                  }))
+                }
+                editable
+                defaultValue={this.state.lastName}
+                dataDetectorTypes="all"
+                keyboardAppearance="light"
+                textContentType="name"
+                autoCompleteType="username"
+                onChangeText={val =>
+                  this.setState(prevState => ({
+                    ...this.state,
+                    lastName: val,
+                  }))
+                }
+                placeholder="Prénom"
+                placeholderTextColor="black"
+              />
+            )}
+          </View>
+          <View
+            style={{
+              flexBasis: '80%',
+              padding: 0,
+              margin: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              marginTop: '10%',
+            }}>
+            {this.state.email && this.state.emailB ? (
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignContent: 'center',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '100%',
+                  borderRadius: 10,
+                }}>
+                <Text
+                  style={{
+                    color: '#7371FC',
+                    fontSize: 20,
+                    fontFamily: 'Manrope-Regular',
+                  }}>
+                  {this.state.email}
+                </Text>
+                <TouchableOpacity
+                  style={{paddingLeft: '10%'}}
+                  onPress={() =>
+                    this.setState(prevState => ({
+                      ...this.state,
+                      emailB: false,
+                    }))
+                  }>
+                  <Icon name="close" size={20} />
+                </TouchableOpacity>
+              </View>
+            ) : (
+              <TextInput
+                style={style.inputBis}
+                autoCapitalize="none"
+                onEndEditing={() =>
+                  this.setState(prevState => ({
+                    ...this.state,
+                    emailB: true,
+                  }))
+                }
+                editable
+                defaultValue={this.state.email}
+                dataDetectorTypes="all"
+                keyboardAppearance="light"
+                textContentType="emailAddress"
+                autoCompleteType="email"
+                onChangeText={val =>
+                  this.setState(prevState => ({
+                    ...this.state,
+                    email: val,
+                  }))
+                }
+                placeholder={
+                  (this.state.error && !this.re.test(this.state.email)) ||
+                  (this.state.errorT && !this.re.test(this.state.email))
+                    ? 'Email invalide *'
+                    : 'Email'
+                }
+                placeholderTextColor={
+                  (this.state.error && !this.re.test(this.state.email)) ||
+                  (this.state.errorT && !this.re.test(this.state.email))
+                    ? '#FF3A20'
+                    : 'black'
+                }
+              />
+            )}
+          </View>
+
+          <View
+            style={{
+              flexBasis: '80%',
+              padding: 0,
+              margin: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              marginTop: '10%',
+            }}>
             <TextInput
-              autoCapitalize="none"
-              style={style.ipuntBis}
-              onEndEditing={() =>
-                this.setState(prevState => ({
-                  ...this.state,
-                  lastNameb: true,
-                }))
-              }
+              style={style.inputBis}
+              defaultValue={this.state.password}
               editable
-              defaultValue={this.state.lastName}
+              secureTextEntry={this.state.secret}
+              autoCapitalize="none"
               dataDetectorTypes="all"
               keyboardAppearance="light"
-              textContentType="name"
-              autoCompleteType="username"
+              textContentType="password"
+              autoCompleteType="password"
               onChangeText={val =>
                 this.setState(prevState => ({
                   ...this.state,
-                  lastName: val,
-                }))
-              }
-              placeholder="Prénom"
-              placeholderTextColor="black"
-            />
-          )}
-        </View>
-        <View
-          style={{
-            flexBasis: '80%',
-            padding: 0,
-            margin: 0,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            marginTop: '10%',
-          }}>
-          {this.state.email && this.state.emailB ? (
-            <View
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignContent: 'center',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '100%',
-                borderRadius: 10,
-              }}>
-              <Text
-                style={{
-                  color: '#7371FC',
-                  fontSize: 20,
-                  fontFamily: 'Manrope-Regular',
-                }}>
-                {this.state.email}
-              </Text>
-              <TouchableOpacity
-                style={{paddingLeft: '10%'}}
-                onPress={() =>
-                  this.setState(prevState => ({
-                    ...this.state,
-                    emailB: false,
-                  }))
-                }>
-                <Icon name="close" size={20} />
-              </TouchableOpacity>
-            </View>
-          ) : (
-            <TextInput
-              style={style.ipuntBis}
-              autoCapitalize="none"
-              onEndEditing={() =>
-                this.setState(prevState => ({
-                  ...this.state,
-                  emailB: true,
-                }))
-              }
-              editable
-              defaultValue={this.state.email}
-              dataDetectorTypes="all"
-              keyboardAppearance="light"
-              textContentType="emailAddress"
-              autoCompleteType="email"
-              onChangeText={val =>
-                this.setState(prevState => ({
-                  ...this.state,
-                  email: val,
+                  password: val,
                 }))
               }
               placeholder={
-                (this.state.error && !this.re.test(this.state.email)) ||
-                (this.state.errorT && !this.re.test(this.state.email))
-                  ? 'Email invalide *'
-                  : 'Email'
+                (this.state.errorT && !this.state.password) ||
+                (this.state.error && this.state.password.length < 5)
+                  ? '5 caractères minimum'
+                  : 'Mot de passe'
               }
               placeholderTextColor={
-                (this.state.error && !this.re.test(this.state.email)) ||
-                (this.state.errorT && !this.re.test(this.state.email))
+                (this.state.errorT && !this.state.password) ||
+                (this.state.error && this.state.password.length < 5)
                   ? '#FF3A20'
                   : 'black'
               }
             />
-          )}
-        </View>
+            <TouchableOpacity
+              style={{top: '1%'}}
+              onPress={() =>
+                this.setState(prevState => ({
+                  ...this.state,
+                  secret: !prevState.secret,
+                }))
+              }>
+              <Icon name="eyeo" size={30} color="black" />
+            </TouchableOpacity>
+          </View>
 
-        <View
-          style={{
-            flexBasis: '80%',
-            padding: 0,
-            margin: 0,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            marginTop: '10%',
-          }}>
-          <TextInput
+          <View
             style={{
-              height: 70,
-              fontFamily: 'Manrope-Regular',
-              borderWidth: 1,
-              borderColor: 'black',
-              width: '100%',
-              paddingLeft: '5%',
-              borderRadius: 10,
-              backgroundColor: 'rgba(255,255,255,1)',
-              fontSize: 15,
-            }}
-            defaultValue={this.state.password}
-            editable
-            secureTextEntry={this.state.secret}
-            autoCapitalize="none"
-            dataDetectorTypes="all"
-            keyboardAppearance="light"
-            textContentType="password"
-            autoCompleteType="password"
-            onChangeText={val =>
-              this.setState(prevState => ({
-                ...this.state,
-                password: val,
-              }))
-            }
-            placeholder={
-              (this.state.errorT && !this.state.password) ||
-              (this.state.error && this.state.password.length < 5)
-                ? '5 caractères minimum'
-                : 'Mot de passe'
-            }
-            placeholderTextColor={
-              (this.state.errorT && !this.state.password) ||
-              (this.state.error && this.state.password.length < 5)
-                ? '#FF3A20'
-                : 'black'
-            }
-          />
-          <TouchableOpacity
-            style={{top: '1%'}}
-            onPress={() =>
-              this.setState(prevState => ({
-                ...this.state,
-                secret: !prevState.secret,
-              }))
-            }>
-            <Icon name="eyeo" size={30} color="black" />
-          </TouchableOpacity>
-        </View>
-
-        <View
-          style={{
-            flexBasis: '80%',
-            padding: 0,
-            margin: 0,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            marginTop: '3%',
-          }}>
-          <TextInput
-            style={{
-              height: 70,
-              fontFamily: 'Manrope-Regular',
-              borderWidth: 1,
-              borderColor: 'black',
-              width: '100%',
-              paddingLeft: '5%',
-              borderRadius: 10,
-              backgroundColor: 'rgba(255,255,255,1)',
-              fontSize: 15,
-            }}
-            autoCapitalize="none"
-            secureTextEntry={this.state.secretBis}
-            defaultValue={this.state.confirmpassword}
-            editable
-            dataDetectorTypes="all"
-            keyboardAppearance="light"
-            textContentType="newPassword"
-            autoCompleteType="password"
-            onChangeText={val =>
-              this.setState(prevState => ({
-                ...this.state,
-                confirmpassword: val,
-              }))
-            }
-            placeholder="Confirmez votre mot de passe"
-            placeholderTextColor="black"
-          />
-          <TouchableOpacity
-            style={{top: '1%'}}
-            onPress={() =>
-              this.setState(prevState => ({
-                ...this.state,
-                secretBis: !prevState.secretBis,
-              }))
-            }>
-            <Icon name="eyeo" size={30} color="black" />
-          </TouchableOpacity>
-        </View>
-
-        <View
-          style={{
-            flexBasis: '80%',
-            padding: 0,
-            margin: 0,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            marginTop: '10%',
-          }}>
-          <TouchableOpacity
-            onPress={() => this.handleSubmit()}
-            style={{
-              padding: '5%',
-              borderColor: 'black',
-              borderWidth: 1,
-              borderRadius: 10,
-              width: '50%',
-              justifyContent: 'center',
-              alignContent: 'center',
+              flexBasis: '80%',
+              padding: 0,
+              margin: 0,
+              display: 'flex',
+              flexDirection: 'column',
               alignItems: 'center',
-              backgroundColor: '#7371FC',
-              shadowColor: 'black',
-              shadowOffset: {width: 2, height: 2},
-              shadowOpacity: 10,
+              marginTop: '3%',
             }}>
-            <Text
-              style={{
-                fontFamily: 'Manrope-Regular',
-                color: 'white',
-                fontSize: 20,
-              }}>
-              Suivant
-            </Text>
-          </TouchableOpacity>
-        </View>
-        {this.state.errorT && (
-          <Text
+            <TextInput
+              style={style.inputBis}
+              autoCapitalize="none"
+              secureTextEntry={this.state.secretBis}
+              defaultValue={this.state.confirmpassword}
+              editable
+              dataDetectorTypes="all"
+              keyboardAppearance="light"
+              textContentType="newPassword"
+              autoCompleteType="password"
+              onChangeText={val =>
+                this.setState(prevState => ({
+                  ...this.state,
+                  confirmpassword: val,
+                }))
+              }
+              placeholder="Confirmez votre mot de passe"
+              placeholderTextColor="black"
+            />
+            <TouchableOpacity
+              style={{top: '1%'}}
+              onPress={() =>
+                this.setState(prevState => ({
+                  ...this.state,
+                  secretBis: !prevState.secretBis,
+                }))
+              }>
+              <Icon name="eyeo" size={30} color="black" />
+            </TouchableOpacity>
+          </View>
+
+          <View
             style={{
-              fontFamily: 'Manrope-Regular',
-              color: '#FF3A20',
-              textAlign: 'center',
-              fontSize: 16,
+              flexBasis: '80%',
+              padding: 0,
+              margin: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              marginTop: '10%',
             }}>
-            Tous les champs doivent être remplis.
-          </Text>
-        )}
-        {(this.state.error &&
-          this.state.password &&
-          this.state.password.length < 5) ||
-          (this.state.errorT && !this.state.password && (
+            <TouchableOpacity
+              onPress={() => this.handleSubmit()}
+              style={{
+                padding: '5%',
+                borderColor: 'black',
+                borderWidth: 1,
+                borderRadius: 10,
+                width: '50%',
+                justifyContent: 'center',
+                alignContent: 'center',
+                alignItems: 'center',
+                backgroundColor: '#7371FC',
+                shadowColor: 'black',
+                shadowOffset: {width: 2, height: 2},
+                shadowOpacity: 10,
+              }}>
+              <Text
+                style={{
+                  fontFamily: 'Manrope-Regular',
+                  color: 'white',
+                  fontSize: 20,
+                }}>
+                Suivant
+              </Text>
+            </TouchableOpacity>
+          </View>
+          {this.state.errorT && (
             <Text
               style={{
                 fontFamily: 'Manrope-Regular',
                 color: '#FF3A20',
                 textAlign: 'center',
                 fontSize: 16,
-                top: '1%',
               }}>
-              Votre mot de passe doit contenir au moins 5 caractères.
+              Tous les champs doivent être remplis.
             </Text>
-          ))}
-        {this.state.error &&
-          this.state.confirmpassword !== this.state.password && (
+          )}
+          {(this.state.error &&
+            this.state.password &&
+            this.state.password.length < 5) ||
+            (this.state.errorT && !this.state.password && (
+              <Text style={style.text}>
+                Votre mot de passe doit contenir au moins 5 caractères.
+              </Text>
+            ))}
+          {this.state.error &&
+            this.state.confirmpassword !== this.state.password && (
+              <Text style={style.text}>
+                Les mots de passe ne sont pas identiques,veuillez à nouveau
+                confirmer votre mot de passe.
+              </Text>
+            )}
+
+          {this.state.errorIdentification && (
             <Text style={style.text}>
-              Les mots de passe ne sont pas identiques,veuillez à nouveau
-              confirmer votre mot de passe.
+              L'adresse email saisie est déjà utilisée.
             </Text>
           )}
 
-        {this.state.errorIdentification && (
-          <Text style={style.text}>
-            L'adresse email saisie est déjà utilisée.
-          </Text>
-        )}
-
-        {this.state.errorT && !this.state.email && (
-          <Text style={style.text}>
-            L'email renseignée n'est pas valide (veuillez inclure un '@').
-          </Text>
-        )}
-        {this.state.errorT &&
-          !this.re.test(this.state.email) &&
-          this.state.email && (
+          {this.state.errorT && !this.state.email && (
             <Text style={style.text}>
               L'email renseignée n'est pas valide (veuillez inclure un '@').
             </Text>
           )}
-        {this.state.error && !this.re.test(this.state.email) && (
-          <Text style={style.text}>
-            L'email renseignée n'est pas valide (veuillez inclure un '@').
-          </Text>
-        )}
-      </ScrollView>
+          {this.state.errorT &&
+            !this.re.test(this.state.email) &&
+            this.state.email && (
+              <Text style={style.text}>
+                L'email renseignée n'est pas valide (veuillez inclure un '@').
+              </Text>
+            )}
+          {this.state.error && !this.re.test(this.state.email) && (
+            <Text style={style.text}>
+              L'email renseignée n'est pas valide (veuillez inclure un '@').
+            </Text>
+          )}
+        </ScrollView>
+      </KeyboardAvoidingView>
     );
   }
 }
