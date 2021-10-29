@@ -8,6 +8,7 @@ let initialState = {
 let reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'register':
+      console.log(action.payload.token);
       return Object.assign({}, state, {
         token: action.payload.token,
       });

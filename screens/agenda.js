@@ -151,7 +151,7 @@ class Agenda extends PureComponent {
       method: 'DELETE',
       url: `${API_URL}/event/${this.state.event.id}`,
       headers: {
-        'x-auth-token': this.props.tokenn,
+        'x-auth-token': JSON.parse(this.props.tokenn),
       },
     }).then(res => {
       this.setState(prevState => ({

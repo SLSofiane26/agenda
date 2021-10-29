@@ -27,7 +27,6 @@ class homePage extends PureComponent {
   }
 
   componentDidMount = async () => {
-    //await AsyncStorage.clear();
     this.props.fetchUser(this.props.token);
   };
 

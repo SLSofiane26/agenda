@@ -15,7 +15,6 @@ export let cheickAuth = () => async dispatch => {
 
 export let login = data => async dispatch => {
   await AsyncStorage.setItem('token', JSON.stringify(data.token));
-
   dispatch({type: 'login', payload: {token: data.token}});
 };
 

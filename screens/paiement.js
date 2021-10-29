@@ -91,6 +91,7 @@ class Paiement extends PureComponent {
         this.state.password === this.state.confirmpassword &&
         this.re.test(this.state.email)
       ) {
+        console.log('dsds');
         await axios({
           method: 'POST',
           url: `${API_URL}/register`,
@@ -106,12 +107,13 @@ class Paiement extends PureComponent {
               token: res.data.token,
             });
           })
-          .catch(err =>
+          .catch(err => {
+            console.log(err);
             this.setState(prevState => ({
               ...this.state,
               errorEmailIdentification: true,
-            })),
-          );
+            }));
+          });
       } else {
         this.setState(prevState => ({
           ...this.state,

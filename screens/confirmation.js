@@ -72,14 +72,11 @@ let confirmation = React.memo(function confirmation(props) {
 
       let {client_secret, status} = res.data;
 
-      console.log(client_secret);
-
       if (status === 'requires_confirmation') {
         await confirmPayment(client_secret, {type: 'Card'}).then(function (
           result,
         ) {
           if (result.error) {
-            console.log('There was an issue!');
             console.log(result.error);
           } else {
             setLoading(true);
@@ -104,7 +101,25 @@ let confirmation = React.memo(function confirmation(props) {
         flexDirection: 'column',
       }}>
       {loading ? (
-        <Spinner isVisible={true} size={100} type="Arc" color="black" />
+        <View
+          style={{
+            width: '100%',
+            height: '100%',
+            alignContent: 'center',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <Spinner isVisible={true} size={350} type="Bounce" color="#7371FC" />
+          <Text
+            style={{
+              fontFamily: 'Manrope-Regular',
+              color: 'black',
+              fontSize: 20,
+              marginTop: '5%',
+            }}>
+            Paiement en cours...
+          </Text>
+        </View>
       ) : (
         <StripeProvider
           publishableKey={publishableKey}
@@ -127,9 +142,6 @@ let confirmation = React.memo(function confirmation(props) {
             }}
             onCardChange={cardDetails => {
               setCard(cardDetails);
-            }}
-            onFocus={focusedField => {
-              console.log('focusField', focusedField);
             }}
           />
 

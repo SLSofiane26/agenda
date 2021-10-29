@@ -34,7 +34,7 @@ let main = () => {
               }}>
               <View
                 style={{
-                  flexBasis: '55%',
+                  flexBasis: '60%',
                   display: 'flex',
                   justifyContent: 'space-around',
                   flexDirection: 'row',

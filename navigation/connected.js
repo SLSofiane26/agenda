@@ -62,6 +62,7 @@ let main = () => {
                   shadowOpacity: 10,
                   borderColor: 'black',
                   borderWidth: 1,
+                  top: '10%',
                 }}>
                 <TouchableOpacity
                   onPress={() => navigation.navigate('Mon espace')}>
