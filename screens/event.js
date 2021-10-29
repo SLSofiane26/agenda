@@ -51,7 +51,7 @@ let event = React.memo(function event(props) {
         url: `${API_URL}/event`,
         data: d,
         headers: {
-          'x-auth-token': token,
+          'x-auth-token': JSON.parse(token),
         },
       }).then(res => {
         setOne(false);

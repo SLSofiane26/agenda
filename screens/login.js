@@ -8,6 +8,7 @@ import {
   Animated,
   Image,
   StyleSheet,
+  KeyboardAvoidingView,
 } from 'react-native';
 import axios from 'axios';
 import {API_URL} from '@env';
@@ -116,6 +117,7 @@ let login = React.memo(function login(props) {
         }}
       />
       <ScrollView
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={{
           justifyContent: 'center',
           alignContent: 'center',

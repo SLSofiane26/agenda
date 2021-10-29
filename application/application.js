@@ -2,7 +2,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import Main from '../navigation/main';
 import Connected from '../navigation/connected';
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import {connect, useDispatch} from 'react-redux';
 import * as ACTIONS from '../reducer/actions';
 
 export class Application extends Component {
@@ -36,7 +36,9 @@ let mapStateToProps = state => {
 
 let mapDispatchToProps = dispatch => {
   return {
-    ifAuth: () => dispatch(ACTIONS.cheickAuth()),
+    ifAuth: () => {
+      dispatch(ACTIONS.cheickAuth());
+    },
   };
 };
 

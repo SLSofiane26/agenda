@@ -29,7 +29,7 @@ class Agenda extends PureComponent {
       method: 'GET',
       url: `${API_URL}/event`,
       headers: {
-        'x-auth-token': this.props.tokenn,
+        'x-auth-token': JSON.parse(this.props.tokenn),
       },
     }).then(res => {
       this.setState(prevState => ({
@@ -71,7 +71,7 @@ class Agenda extends PureComponent {
       method: 'GET',
       url: `${API_URL}/event`,
       headers: {
-        'x-auth-token': this.props.tokenn,
+        'x-auth-token': JSON.parse(this.props.tokenn),
       },
     }).then(res => {
       if (res.data.event.length != this.state.data.length) {

@@ -14,7 +14,7 @@ let mainStack = createNativeStackNavigator();
 let main = () => {
   return (
     <mainStack.Navigator
-      initialRouteName="confirmation"
+      initialRouteName="home"
       screenOptions={{
         headerShown: true,
         headerTransparent: true,
@@ -30,12 +30,11 @@ let main = () => {
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'flex-end',
-                backgroundColor: 'white',
                 paddingTop: '5%',
               }}>
               <View
                 style={{
-                  flexBasis: '50%',
+                  flexBasis: '55%',
                   display: 'flex',
                   justifyContent: 'space-around',
                   flexDirection: 'row',

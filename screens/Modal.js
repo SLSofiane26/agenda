@@ -21,16 +21,18 @@ let modal = React.memo(function (props) {
           position: 'absolute',
           backgroundColor: '#7371FC',
           width: '90%',
-          height: '35%',
+          height: '50%',
           shadowColor: 'black',
           shadowOffset: {width: 2, height: 2},
           shadowOpacity: 1,
           shadowRadius: 1,
           zIndex: 10,
           borderRadius: 20,
+          transform: [{translateX: props.anim}],
+          display: 'flex',
           alignContent: 'center',
           alignItems: 'center',
-          transform: [{translateX: props.anim}],
+          justifyContent: 'center',
         }}>
         <Icon
           onPress={props.onPress}
@@ -40,8 +42,6 @@ let modal = React.memo(function (props) {
           style={{
             alignSelf: 'flex-end',
             marginRight: '5%',
-            position: 'absolute',
-            marginTop: '5%',
           }}
         />
         <Text
@@ -49,7 +49,7 @@ let modal = React.memo(function (props) {
             color: 'white',
             fontFamily: 'Manrope-Regular',
             fontSize: 25,
-            marginTop: '10%',
+            marginTop: '5%',
           }}>
           {props.event.title}
         </Text>
@@ -68,7 +68,7 @@ let modal = React.memo(function (props) {
             fontSize: 25,
             marginTop: '3%',
           }}>
-          Date : {new Date(props.event.start).toLocaleDateString('fr')}
+          {new Date(props.event.start).toLocaleDateString('fr')}
         </Text>
         <View
           style={{
@@ -93,7 +93,6 @@ let modal = React.memo(function (props) {
                 fontFamily: 'Manrope-Regular',
                 fontSize: 25,
               }}>
-              Heure :{' '}
               {new Date(props.event.start).getHours() < 10
                 ? `0${new Date(props.event.start).getHours()}`
                 : new Date(props.event.start).getHours()}
@@ -121,7 +120,7 @@ let modal = React.memo(function (props) {
             justifyContent: 'center',
             display: 'flex',
             borderRadius: 10,
-            marginTop: '7%',
+            marginTop: '5%',
             shadowOffset: {width: 2, height: 2},
             shadowColor: 'black',
             shadowOpacity: 10,

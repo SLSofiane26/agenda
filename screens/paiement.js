@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {connect} from 'react-redux';
-import stripe from '@stripe/stripe-react-native';
+import {API_URL} from '@env';
 
 class Paiement extends PureComponent {
   constructor(props) {
@@ -46,6 +46,7 @@ class Paiement extends PureComponent {
     this.setState(prevState => ({
       ...this.state,
       priceId: this.props.route.params.data,
+      date: this.props.route.params.date,
     }));
   };
 
@@ -56,12 +57,11 @@ class Paiement extends PureComponent {
   isValid = form => {
     let valid = true;
     Object.values(form).forEach(val => {
-      console.log(val);
       if (!val) {
         valid = false;
       }
     });
-    console.log(valid);
+
     return valid;
   };
 
@@ -92,16 +92,26 @@ class Paiement extends PureComponent {
         this.re.test(this.state.email)
       ) {
         await axios({
-          url: `${API_URL}/create-customer"`,
+          method: 'POST',
+          url: `${API_URL}/register`,
           data: this.state,
-          headers: {
+          header: {
             'Content-Type': 'application/json',
           },
         })
-          .then(res =>
-            this.props.navigation.navigate('confirmation', {data: d}),
-          )
-          .catch(err => console.log(err));
+          .then(res => {
+            this.props.navigation.navigate('confirmation', {
+              priceId: this.state.priceId,
+              email: this.state.email,
+              token: res.data.token,
+            });
+          })
+          .catch(err =>
+            this.setState(prevState => ({
+              ...this.state,
+              errorEmailIdentification: true,
+            })),
+          );
       } else {
         this.setState(prevState => ({
           ...this.state,
@@ -115,7 +125,6 @@ class Paiement extends PureComponent {
         }, 9000);
       }
     } else {
-      console.log('hello');
       this.setState(prevState => ({...this.state, errorT: true}));
       setTimeout(() => {
         this.setState(prevState => ({
@@ -127,7 +136,6 @@ class Paiement extends PureComponent {
   };
 
   render() {
-    console.log(this.state.priceId);
     return (
       <KeyboardAvoidingView
         style={{
@@ -138,9 +146,16 @@ class Paiement extends PureComponent {
           alignContent: 'center',
           alignItems: 'center',
           justifyContent: 'center',
-        }}
-        behavior="height"
-        keyboardVerticalOffset={10}>
+        }}>
+        <Image
+          blurRadius={2}
+          source={require('../images/fond.png')}
+          resizeMethod="auto"
+          resizeMode="contain"
+          style={{
+            ...StyleSheet.absoluteFillObject,
+          }}
+        />
         <ScrollView
           contentContainerStyle={{
             justifyContent: 'center',
@@ -151,7 +166,6 @@ class Paiement extends PureComponent {
             flexDirection: 'row',
             flexWrap: 'wrap',
             marginTop: '20%',
-            backgroundColor: 'white',
           }}>
           <View
             style={{

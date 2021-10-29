@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import {DrawerActions} from '@react-navigation/routers';
 import Agendab from '../screens/agenda';
 import Profile from '../screens/profile';
+import Logout from '../screens/logout';
 
 let connectedStack = createNativeStackNavigator();
 
@@ -16,7 +17,7 @@ let drawerNav = createDrawerNavigator();
 let main = () => {
   return (
     <drawerNav.Navigator
-      initialRouteName="Profile"
+      initialRouteName="Mon espace"
       screenOptions={{
         drawerType: 'front',
         headerShown: true,
@@ -126,6 +127,7 @@ let main = () => {
       <connectedStack.Screen component={Event} name="Ajouter un évènement" />
       <connectedStack.Screen component={Agendab} name="Mon agenda" />
       <connectedStack.Screen component={Profile} name="Profile" />
+      <connectedStack.Screen component={Logout} name="Déconnexion" />
     </drawerNav.Navigator>
   );
 };

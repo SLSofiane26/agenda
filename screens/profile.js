@@ -15,9 +15,7 @@ class Profil extends PureComponent {
     super(props);
     this.state = {};
   }
-  componentDidMount = () => {
-    console.log(this.props.tokenn);
-  };
+  componentDidMount = () => {};
 
   componentDidUpdate = () => {};
 

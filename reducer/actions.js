@@ -6,21 +6,16 @@ import {API_URL} from '@env';
 export let cheickAuth = () => async dispatch => {
   let token = await AsyncStorage.getItem('token');
 
-  if (token) {
+  if (JSON.parse(token)) {
     dispatch({type: 'login', payload: {token: token}});
   } else {
     dispatch({type: 'logout'});
   }
 };
 
-export let register = data => async dispatch => {
-  let token = await AsyncStorage.setItem('token', data.token);
-
-  dispatch({type: 'register', payload: {token: data.token}});
-};
-
 export let login = data => async dispatch => {
-  let token = await AsyncStorage.setItem('token', data.token);
+  await AsyncStorage.setItem('token', JSON.stringify(data.token));
+
   dispatch({type: 'login', payload: {token: data.token}});
 };
 
@@ -29,7 +24,27 @@ export let user = data => async dispatch => {
     method: 'GET',
     url: `${API_URL}/user`,
     headers: {
-      'x-auth-token': data,
+      'x-auth-token': JSON.parse(data),
     },
-  }).then(res => dispatch({type: 'user', payload: {data: res.data}}));
+  })
+    .then(res => dispatch({type: 'user', payload: {data: res.data}}))
+    .catch(err => console.log(err));
+};
+
+export let logout = () => async dispatch => {
+  dispatch({type: 'logout'});
+};
+
+export let register = (data, dataTwo) => async dispatch => {
+  await axios({
+    method: 'PUT',
+    url: `${API_URL}/user`,
+    headers: {'x-auth-token': data},
+    data: dataTwo,
+  })
+    .then(async res => {
+      await AsyncStorage.setItem('token', JSON.stringify(data));
+      dispatch({type: 'register', payload: {token: data}});
+    })
+    .catch(err => console.log(err));
 };

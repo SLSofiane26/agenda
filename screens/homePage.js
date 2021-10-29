@@ -51,7 +51,7 @@ class homePage extends PureComponent {
         }
 
         Tts.speak(
-          `Nouvel évènement ajouté à votre agenda pour le ${joursz} ${mois[moisz]} ${an} à ${hours} heures ${minutes}`,
+          `${this.props.route.params.dataBis.title} le ${joursz} ${mois[moisz]} ${an} à ${hours} heures ${minutes} ajouté à votre agenda`,
           {
             iosVoiceId: 'com.apple.ttsbundle.Thomas-compact',
             rate: 0.5,
@@ -60,7 +60,7 @@ class homePage extends PureComponent {
 
         Animated.sequence([
           Animated.timing(this.state.animTop, {
-            toValue: -330,
+            toValue: -300,
             duration: 1000,
             easing: Easing.bounce,
             useNativeDriver: false,
@@ -68,7 +68,7 @@ class homePage extends PureComponent {
           Animated.timing(this.state.animTop, {
             toValue: -700,
             duration: 500,
-            delay: 5400,
+            delay: 6000,
             easing: Easing.bounce,
             useNativeDriver: false,
           }),
@@ -105,6 +105,7 @@ class homePage extends PureComponent {
           justifyContent: 'center',
           alignContent: 'center',
           alignItems: 'center',
+          marginTop: '10%',
         }}>
         {this.state.new && (
           <Animated.View
@@ -113,12 +114,12 @@ class homePage extends PureComponent {
               zIndex: 1000,
               display: 'flex',
               flexDirection: 'column',
-              width: '80%',
+              width: '85%',
             }}>
             <TouchableOpacity
               style={{
                 backgroundColor: '#FF3A20',
-                padding: '2%',
+                padding: '3%',
                 borderRadius: 10,
                 marginTop: this.state.animTop,
                 shadowColor: 'black',
@@ -130,7 +131,7 @@ class homePage extends PureComponent {
               <Text style={style.text}>Évènement ajouté à votre agenda !</Text>
               <Text style={style.text}>{this.state.titre}</Text>
               <Text style={style.text}>
-                Date de l'évènement :{' '}
+                Date :{' '}
                 {new Date(this.state.dateBis).toLocaleDateString('fr-FR')}
               </Text>
             </TouchableOpacity>
