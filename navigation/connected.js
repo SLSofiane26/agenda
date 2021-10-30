@@ -37,7 +37,6 @@ let main = () => {
           return (
             <View
               style={{
-                position: 'absolute',
                 zIndex: 1000,
                 width: '100%',
                 height: Dimensions.get('window').height / 8,
@@ -114,6 +113,7 @@ let main = () => {
               <TouchableOpacity
                 style={{
                   marginLeft: '20%',
+                  marginTop: '4%',
                 }}
                 onPress={() =>
                   navigation.dispatch(DrawerActions.toggleDrawer())

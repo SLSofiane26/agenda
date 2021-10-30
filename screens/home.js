@@ -20,7 +20,7 @@ class Home extends PureComponent {
   componentDidMount = () => {
     Animated.parallel([
       Animated.spring(this.state.positionText.x, {
-        toValue: 0,
+        toValue: 70,
         bounciness: 0.004,
         speed: 0.0005,
         delay: 100,
@@ -53,7 +53,7 @@ class Home extends PureComponent {
             justifyContent: 'center',
             alignContent: 'center',
             alignItems: 'center',
-            marginTop: '20%',
+            marginTop: '14%',
           }}>
           <Animated.Text
             style={{
@@ -72,7 +72,7 @@ class Home extends PureComponent {
           </Animated.Text>
           <View
             style={{
-              marginTop: 40,
+              marginTop: '28%',
               padding: '4%',
               backgroundColor: 'rgba(255,255,255,0.9)',
               borderColor: 'black',
@@ -108,7 +108,13 @@ class Home extends PureComponent {
               justifyContent: 'space-evenly',
               alignItems: 'center',
             }}>
-            <View style={{marginTop: 60}}>
+            <View
+              style={{
+                marginTop: '10%',
+                alignContent: 'center',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
               <TouchableOpacity
                 style={style.input}
                 onPress={() => this.props.navigation.navigate('login')}>
@@ -117,7 +123,7 @@ class Home extends PureComponent {
             </View>
             <View
               style={{
-                marginTop: 60,
+                marginTop: '10%',
                 alignContent: 'center',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -137,7 +143,7 @@ class Home extends PureComponent {
             alignItems: 'center',
             justifyContent: 'center',
             width: '100%',
-            marginTop: '14%',
+            marginTop: '5%',
           }}>
           <Text
             style={{

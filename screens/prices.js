@@ -39,7 +39,7 @@ let prices = props => {
           alignContent: 'center',
           alignItems: 'center',
           flexDirection: 'column',
-          marginTop: '10%',
+          marginTop: '15%',
         }}>
         <View
           style={{

@@ -23,21 +23,18 @@ class Profil extends PureComponent {
 
   render() {
     return (
-      <KeyboardAvoidingView
-        style={{flex: 1, backgroundColor: 'white'}}
-        behavior="padding">
+      <KeyboardAvoidingView style={{backgroundColor: 'white'}}>
         <ScrollView
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={{
+            display: 'flex',
             justifyContent: 'center',
             alignContent: 'center',
             alignItems: 'center',
-            display: 'flex',
             flexDirection: 'row',
-            flexWrap: 'wrap',
-            marginTop: '20%',
             backgroundColor: 'white',
+            marginTop: '15%',
           }}>
           <View
             style={{
@@ -51,6 +48,26 @@ class Profil extends PureComponent {
               alignContent: 'center',
               marginTop: '10%',
             }}>
+            <TextInput
+              style={style.input}
+              autoCapitalize="none"
+              dataDetectorTypes="all"
+              keyboardAppearance="light"
+              placeholder="Age"
+              placeholderTextColor="black"
+              style={style.input}
+            />
+
+            <TextInput
+              style={style.input}
+              autoCapitalize="none"
+              dataDetectorTypes="all"
+              keyboardAppearance="light"
+              placeholder="Genre"
+              placeholderTextColor="black"
+              style={style.input}
+            />
+
             <TextInput
               style={style.input}
               autoCapitalize="none"
@@ -77,7 +94,7 @@ class Profil extends PureComponent {
               dataDetectorTypes="all"
               keyboardAppearance="light"
               textContentType="familyName"
-              autoCompleteType="name"
+              autoCompleteType="email"
               placeholder="Email"
               placeholderTextColor="black"
             />
@@ -122,27 +139,32 @@ class Profil extends PureComponent {
               placeholderTextColor="black"
             />
 
-            <TextInput
-              style={style.input}
-              autoCapitalize="none"
-              dataDetectorTypes="all"
-              keyboardAppearance="light"
-              placeholder="Age"
-              placeholderTextColor="black"
-              style={style.input}
-            />
-
             <TouchableOpacity
               onPress={() => console.log('hello')}
               style={{
-                backgroundColor: 'red',
+                padding: '4%',
+                borderColor: 'black',
+                borderWidth: 1,
+                borderRadius: 10,
+                width: '50%',
+                marginTop: '10%',
+                justifyContent: 'center',
                 alignContent: 'center',
                 alignItems: 'center',
-                justifyContent: 'center',
-                borderRadius: 15,
-                marginTop: '15%',
+                shadowColor: 'black',
+                shadowOffset: {width: 2, height: 2},
+                shadowOpacity: 10,
+                backgroundColor: '#7371FC',
+                marginBottom: '30%',
               }}>
-              <Text style={{padding: '10%'}}>Enregister</Text>
+              <Text
+                style={{
+                  fontFamily: 'Manrope-Regular',
+                  color: 'white',
+                  fontSize: 20,
+                }}>
+                Enregister
+              </Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
