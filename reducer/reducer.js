@@ -3,6 +3,7 @@ let initialState = {
   prenom: null,
   email: null,
   token: null,
+  orientation: 'PORTRAIT',
 };
 
 let reducer = (state = initialState, action) => {
@@ -28,6 +29,11 @@ let reducer = (state = initialState, action) => {
         nom: action.payload.data.firstName,
         prenom: action.payload.data.lastName,
         email: action.payload.data.email,
+      });
+      break;
+    case 'change':
+      return Object.assign({}, state, {
+        orientation: action.payload.data,
       });
       break;
     default:

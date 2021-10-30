@@ -4,20 +4,38 @@ import Connected from '../navigation/connected';
 import React, {Component} from 'react';
 import {connect, useDispatch} from 'react-redux';
 import * as ACTIONS from '../reducer/actions';
+import {Dimensions} from 'react-native';
 
 export class Application extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.orientationChange = this.orientationChange.bind(this);
   }
+
+  orientationChange = () => {
+    return Dimensions.get('window').height > Dimensions.get('window').width;
+  };
 
   componentDidMount = async () => {
     this.props.ifAuth();
+
+    Dimensions.addEventListener('change', () => {
+      if (this.orientationChange()) {
+        console.log('PORTRAIT');
+        this.props.orientationChange('PORTRAIT');
+      } else {
+        console.log('LANDSCAPE');
+        this.props.orientationChange('LANDSCAPE');
+      }
+    });
   };
 
   componentDidUpdate = async () => {
     this.props.ifAuth();
   };
+
+  componentWillUnmount = () => {};
 
   render() {
     return (
@@ -39,6 +57,8 @@ let mapDispatchToProps = dispatch => {
     ifAuth: () => {
       dispatch(ACTIONS.cheickAuth());
     },
+    orientationChange: data =>
+      dispatch({type: 'change', payload: {data: data}}),
   };
 };
 
