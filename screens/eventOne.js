@@ -23,6 +23,7 @@ let eventOne = React.memo(function eventOne(props) {
           display: 'flex',
           flexDirection: 'column',
           width: '100%',
+          marginTop: '10%',
         }}>
         <Text
           style={{

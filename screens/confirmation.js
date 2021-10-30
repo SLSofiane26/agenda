@@ -77,7 +77,7 @@ let confirmation = React.memo(function confirmation(props) {
           result,
         ) {
           if (result.error) {
-            console.log(result.error);
+            return;
           } else {
             setLoading(true);
             dispatch(ACTIONS.register(route.params.token, res.data));

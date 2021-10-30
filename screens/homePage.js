@@ -7,6 +7,7 @@ import {
   Image,
   StyleSheet,
   Animated,
+  ScrollView,
 } from 'react-native';
 import {Easing} from 'react-native-reanimated';
 import Tts from 'react-native-tts';
@@ -59,7 +60,7 @@ class homePage extends PureComponent {
 
         Animated.sequence([
           Animated.timing(this.state.animTop, {
-            toValue: -300,
+            toValue: -350,
             duration: 1000,
             easing: Easing.bounce,
             useNativeDriver: false,
@@ -106,58 +107,6 @@ class homePage extends PureComponent {
           alignItems: 'center',
           marginTop: '10%',
         }}>
-        {this.state.new && (
-          <Animated.View
-            style={{
-              position: 'absolute',
-              zIndex: 1000,
-              display: 'flex',
-              flexDirection: 'column',
-              width: '85%',
-            }}>
-            <TouchableOpacity
-              style={{
-                backgroundColor: '#FF3A20',
-                padding: '3%',
-                borderRadius: 10,
-                marginTop: this.state.animTop,
-                shadowColor: 'black',
-                shadowOffset: {width: 2, height: 2},
-                shadowOpacity: 10,
-                borderWidth: 1,
-                borderColor: 'black',
-              }}>
-              <Text style={style.text}>Évènement ajouté à votre agenda !</Text>
-              <Text style={style.text}>{this.state.titre}</Text>
-              <Text style={style.text}>
-                Date :{' '}
-                {new Date(this.state.dateBis).toLocaleDateString('fr-FR')}
-              </Text>
-            </TouchableOpacity>
-          </Animated.View>
-        )}
-        <Text
-          style={{
-            color: 'black',
-            fontSize: 25,
-            fontFamily: 'Manrope-Light',
-            textAlign: 'center',
-            borderRadius: 25,
-          }}>
-          {jourss[jours]} {new Date().getDate()} {mois[month]}
-        </Text>
-        <Text
-          style={{
-            color: 'black',
-            fontSize: 25,
-            fontFamily: 'Manrope-Bold',
-            textAlign: 'center',
-            borderRadius: 25,
-            marginTop: '4%',
-          }}>
-          Bonjour {this.props.nom} {this.props.prenom},
-        </Text>
-
         <Image
           blurRadius={2}
           source={require('../images/4.png')}
@@ -168,48 +117,115 @@ class homePage extends PureComponent {
             height: '100%',
           }}
         />
-        <TouchableOpacity
-          style={style.button}
-          onPress={() => this.props.navigation.navigate('Mon agenda')}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            justifyContent: 'center',
+            alignContent: 'center',
+            alignItems: 'center',
+            display: 'flex',
+            flex: 1,
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            marginTop: '10%',
+          }}>
+          {this.state.new && (
+            <Animated.View
+              style={{
+                position: 'absolute',
+                zIndex: 1000,
+                display: 'flex',
+                flexDirection: 'column',
+                width: '85%',
+              }}>
+              <TouchableOpacity
+                style={{
+                  backgroundColor: '#FF3A20',
+                  padding: '3%',
+                  borderRadius: 10,
+                  marginTop: this.state.animTop,
+                  shadowColor: 'black',
+                  shadowOffset: {width: 2, height: 2},
+                  shadowOpacity: 10,
+                  borderWidth: 1,
+                  borderColor: 'black',
+                }}>
+                <Text style={style.text}>
+                  Évènement ajouté à votre agenda !
+                </Text>
+                <Text style={style.text}>{this.state.titre}</Text>
+                <Text style={style.text}>
+                  Date :{' '}
+                  {new Date(this.state.dateBis).toLocaleDateString('fr-FR')}
+                </Text>
+              </TouchableOpacity>
+            </Animated.View>
+          )}
           <Text
             style={{
-              color: 'white',
-              fontSize: 40,
-              fontFamily: 'Manrope-Regular',
+              color: 'black',
+              fontSize: 25,
+              fontFamily: 'Manrope-Light',
               textAlign: 'center',
-              borderRadius: 20,
+              borderRadius: 25,
             }}>
-            Mon agenda
+            {jourss[jours]} {new Date().getDate()} {mois[month]}
           </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={style.button}
-          onPress={() =>
-            this.props.navigation.navigate('Ajouter un évènement')
-          }>
           <Text
             style={{
-              color: 'white',
-              fontSize: 40,
-              fontFamily: 'Manrope-Regular',
+              color: 'black',
+              fontSize: 25,
+              fontFamily: 'Manrope-Bold',
               textAlign: 'center',
+              borderRadius: 25,
+              marginTop: '4%',
             }}>
-            Ajouter un évènement
+            Bonjour {this.props.nom} {this.props.prenom},
           </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => this.props.navigation.navigate('Profile')}
-          style={style.button}>
-          <Text
-            style={{
-              color: 'white',
-              fontSize: 20,
-              fontFamily: 'Manrope-Regular',
-              textAlign: 'center',
-            }}>
-            Modifier mes informations
-          </Text>
-        </TouchableOpacity>
+
+          <TouchableOpacity
+            style={style.button}
+            onPress={() => this.props.navigation.navigate('Mon agenda')}>
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 40,
+                fontFamily: 'Manrope-Regular',
+                textAlign: 'center',
+                borderRadius: 20,
+              }}>
+              Mon agenda
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={style.button}
+            onPress={() =>
+              this.props.navigation.navigate('Ajouter un évènement')
+            }>
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 40,
+                fontFamily: 'Manrope-Regular',
+                textAlign: 'center',
+              }}>
+              Ajouter un évènement
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate('Profile')}
+            style={style.button}>
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 20,
+                fontFamily: 'Manrope-Regular',
+                textAlign: 'center',
+              }}>
+              Modifier mes informations
+            </Text>
+          </TouchableOpacity>
+        </ScrollView>
       </View>
     );
   }

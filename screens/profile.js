@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, {PureComponent} from 'react';
 import {
   KeyboardAvoidingView,
@@ -9,17 +10,31 @@ import {
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {connect} from 'react-redux';
+import * as ACTIONS from '../reducer/actions';
 
 class Profil extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      firstName: null,
+      lastName: null,
+      age: null,
+      adress: null,
+      zipCode: null,
+      phoneNumber: null,
+      city: null,
+    };
   }
   componentDidMount = () => {};
 
   componentDidUpdate = () => {};
 
   componentWillUnmount = () => {};
+
+  handleSubmit = async () => {
+    this.props.handleSubmit(this.state, this.props.tokenn);
+    this.props.navigation.navigate('Mon espace');
+  };
 
   render() {
     return (
@@ -53,30 +68,16 @@ class Profil extends PureComponent {
               autoCapitalize="none"
               dataDetectorTypes="all"
               keyboardAppearance="light"
-              placeholder="Age"
-              placeholderTextColor="black"
-              style={style.input}
-            />
-
-            <TextInput
-              style={style.input}
-              autoCapitalize="none"
-              dataDetectorTypes="all"
-              keyboardAppearance="light"
-              placeholder="Genre"
-              placeholderTextColor="black"
-              style={style.input}
-            />
-
-            <TextInput
-              style={style.input}
-              autoCapitalize="none"
-              dataDetectorTypes="all"
-              keyboardAppearance="light"
               textContentType="familyName"
               autoCompleteType="name"
               placeholder="Nom"
               placeholderTextColor="black"
+              onChangeText={val => {
+                this.setState(prevState => ({
+                  ...this.state,
+                  lastName: val,
+                }));
+              }}
             />
             <TextInput
               style={style.input}
@@ -87,46 +88,79 @@ class Profil extends PureComponent {
               autoCompleteType="username"
               placeholder="Prénom"
               placeholderTextColor="black"
+              onChangeText={val => {
+                this.setState(prevState => ({
+                  ...this.state,
+                  firstName: val,
+                }));
+              }}
             />
+
             <TextInput
               style={style.input}
               autoCapitalize="none"
               dataDetectorTypes="all"
               keyboardAppearance="light"
-              textContentType="familyName"
-              autoCompleteType="email"
-              placeholder="Email"
+              keyboardType="number-pad"
+              placeholder="Age"
               placeholderTextColor="black"
+              style={style.input}
+              onChangeText={val => {
+                this.setState(prevState => ({
+                  ...this.state,
+                  age: val,
+                }));
+              }}
             />
+
             <TextInput
               style={style.input}
               autoCapitalize="none"
               dataDetectorTypes="all"
               keyboardAppearance="light"
-              textContentType="emailAddress"
-              autoCompleteType="email"
+              textContentType="addressCity"
+              autoComplete="street-address"
               placeholder="Adresse postale"
               placeholderTextColor="black"
+              onChangeText={val => {
+                this.setState(prevState => ({
+                  ...this.state,
+                  adress: val,
+                }));
+              }}
             />
             <TextInput
               style={style.input}
               autoCapitalize="none"
               dataDetectorTypes="all"
               keyboardAppearance="light"
-              textContentType="familyName"
-              autoCompleteType="name"
+              keyboardType="number-pad"
+              textContentType="postalCode"
+              autoComplete="postal-code"
               placeholder="Code postal"
               placeholderTextColor="black"
+              onChangeText={val => {
+                this.setState(prevState => ({
+                  ...this.state,
+                  zipCode: val,
+                }));
+              }}
             />
             <TextInput
               style={style.input}
               autoCapitalize="none"
               dataDetectorTypes="all"
               keyboardAppearance="light"
-              textContentType="familyName"
-              autoCompleteType="name"
+              textContentType="location"
+              autoComplete="street-address"
               placeholder="Ville"
               placeholderTextColor="black"
+              onChangeText={val => {
+                this.setState(prevState => ({
+                  ...this.state,
+                  city: val,
+                }));
+              }}
             />
             <TextInput
               style={style.input}
@@ -137,10 +171,16 @@ class Profil extends PureComponent {
               autoCompleteType="tel"
               placeholder="Téléphone"
               placeholderTextColor="black"
+              onChangeText={val => {
+                this.setState(prevState => ({
+                  ...this.state,
+                  phoneNumber: val,
+                }));
+              }}
             />
 
             <TouchableOpacity
-              onPress={() => console.log('hello')}
+              onPress={() => this.handleSubmit()}
               style={{
                 padding: '4%',
                 borderColor: 'black',
@@ -180,7 +220,10 @@ let mapStateToProps = state => {
 };
 
 let mapDispatchToProps = () => dispatch => {
-  return {};
+  return {
+    handleSubmit: (data, datab) =>
+      dispatch(ACTIONS.modificationUser(data, datab)),
+  };
 };
 
 let style = StyleSheet.create({

@@ -22,10 +22,8 @@ export class Application extends Component {
 
     Dimensions.addEventListener('change', () => {
       if (this.orientationChange()) {
-        console.log('PORTRAIT');
         this.props.orientationChange('PORTRAIT');
       } else {
-        console.log('LANDSCAPE');
         this.props.orientationChange('LANDSCAPE');
       }
     });

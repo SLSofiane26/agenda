@@ -17,7 +17,7 @@ let eventThree = React.memo(function eventOne(props) {
         alignContent: 'center',
         alignItems: 'center',
       }}>
-      <TouchableOpacity onPress={props.onPressBis}>
+      <TouchableOpacity onPress={props.onPressBis} style={{marginTop: '10%'}}>
         <Icon name="arrowleft" size={50} />
       </TouchableOpacity>
       <View

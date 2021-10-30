@@ -25,9 +25,7 @@ export let user = data => async dispatch => {
     headers: {
       'x-auth-token': JSON.parse(data),
     },
-  })
-    .then(res => dispatch({type: 'user', payload: {data: res.data}}))
-    .catch(err => console.log(err));
+  }).then(res => dispatch({type: 'user', payload: {data: res.data}}));
 };
 
 export let logout = () => async dispatch => {
@@ -40,10 +38,20 @@ export let register = (data, dataTwo) => async dispatch => {
     url: `${API_URL}/user`,
     headers: {'x-auth-token': data},
     data: dataTwo,
-  })
-    .then(async res => {
-      await AsyncStorage.setItem('token', JSON.stringify(data));
-      dispatch({type: 'register', payload: {token: data}});
-    })
-    .catch(err => console.log(err));
+  }).then(async res => {
+    await AsyncStorage.setItem('token', JSON.stringify(data));
+    dispatch({type: 'register', payload: {token: data}});
+  });
+};
+
+export let modificationUser = (data, datab) => async dispatch => {
+  await axios({
+    method: 'PUT',
+    url: `${API_URL}/userb`,
+    data: data,
+    headers: {
+      'x-auth-token': JSON.parse(datab),
+      'Content-Type': 'application/json',
+    },
+  });
 };
