@@ -105,7 +105,6 @@ class homePage extends PureComponent {
           alignContent: 'center',
           alignItems: 'center',
           marginTop: '10%',
-          backgroundColor: 'red',
         }}>
         {this.state.new && (
           <Animated.View

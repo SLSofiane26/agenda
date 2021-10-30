@@ -126,7 +126,7 @@ let login = React.memo(function login(props) {
           flex: 1,
           flexDirection: 'row',
           flexWrap: 'wrap',
-          marginTop: '8%',
+          marginTop: '15%',
         }}>
         <Animated.Text
           style={{
@@ -143,13 +143,12 @@ let login = React.memo(function login(props) {
           style={{
             flexBasis: '80%',
             padding: 0,
-            margin: 0,
+            marginTop: '10%',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
             alignContent: 'center',
-            marginTop: '10%',
           }}>
           {form.email && formBis.email ? (
             <View
@@ -190,6 +189,7 @@ let login = React.memo(function login(props) {
                 borderRadius: 10,
                 backgroundColor: 'rgba(255,255,255,1)',
                 fontSize: 15,
+                marginTop: '5%',
               }}
               autoCapitalize="none"
               onEndEditing={() => setFormBis({...formBis, email: true})}
@@ -213,13 +213,12 @@ let login = React.memo(function login(props) {
           style={{
             flexBasis: '80%',
             padding: 0,
-            margin: 0,
+            marginTop: '10%',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
             alignContent: 'center',
-            marginTop: '15%',
           }}>
           <TextInput
             style={{
@@ -253,12 +252,9 @@ let login = React.memo(function login(props) {
         <View
           style={{
             flexBasis: '80%',
-            padding: 0,
-            margin: 0,
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
-            marginTop: '10%',
             justifyContent: 'space-around',
             alignContent: 'center',
           }}>
