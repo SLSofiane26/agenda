@@ -60,7 +60,7 @@ class homePage extends PureComponent {
 
         Animated.sequence([
           Animated.timing(this.state.animTop, {
-            toValue: -350,
+            toValue: -330,
             duration: 1000,
             easing: Easing.bounce,
             useNativeDriver: false,

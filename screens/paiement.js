@@ -520,11 +520,11 @@ class Paiement extends PureComponent {
           {(this.state.error &&
             this.state.password &&
             this.state.password.length < 5) ||
-            (this.state.errorT && !this.state.password && (
-              <Text style={style.text}>
-                Votre mot de passe doit contenir au moins 5 caractères.
-              </Text>
-            ))}
+          (this.state.errorT && !this.state.password) ? (
+            <Text style={style.text}>
+              Votre mot de passe doit contenir au moins 5 caractères.
+            </Text>
+          ) : null}
           {this.state.error &&
             this.state.confirmpassword !== this.state.password && (
               <Text style={style.text}>
